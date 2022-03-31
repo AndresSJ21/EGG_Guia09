@@ -1,0 +1,70 @@
+package Servicios;
+
+import Entidades.Perro;
+import Entidades.Persona;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class ServiciosPerro {
+
+    public Perro creaPerro() {
+        Scanner leer = new Scanner(System.in);
+        System.out.println("Ingrese los datos del Perro");
+        System.out.println("--Nombre: ");
+        String nombre = leer.nextLine();
+        System.out.println("--Raza: ");
+        String raza = leer.nextLine();
+        System.out.println("--Fecha de Nacimiento: dd/mm/aaaa");
+        Date fNacim = ingresaFecha();
+        System.out.println("--Tamaño: ");
+        String tamanio = leer.nextLine();
+        Persona adoptante=null;
+        return new Perro(nombre, raza, fNacim, tamanio, adoptante);
+    }
+
+    public Date ingresaFecha() {
+        int anio;
+        int mes;
+        int dia;
+        Scanner leer = new Scanner(System.in);
+        System.out.println("Ingrese:\ndia\nmes\naño\n");
+        dia = leer.nextInt();
+        mes = leer.nextInt();
+        anio = leer.nextInt();
+        Date fecha = new Date(anio - 1900, mes - 1, dia);
+        return fecha;
+    }
+
+    public TreeSet<Perro> llenaListaPerros(TreeSet<Perro> dogsList) {
+
+        Scanner leer = new Scanner(System.in);
+        String carga = "S";
+        do {
+            dogsList.add(creaPerro());
+            System.out.println("Si desea ingresar otro perro presiones 'S'");
+        } while (carga.equalsIgnoreCase(leer.nextLine()));
+        return dogsList;
+    }
+
+    public Perro buscaPerro(TreeSet<Perro> dogsList) {
+
+        System.out.println("Ingrese nombre del perro a adoptar");
+        Perro puppy = null;
+
+        Scanner leer = new Scanner(System.in);
+        String dogName = leer.nextLine();
+        for (Perro perro : dogsList) {
+            if (perro.getAdoptante() == null) {
+                 if (perro.getNombre().equalsIgnoreCase(dogName)) {
+                     puppy=perro;
+                     System.out.println(puppy.getNombre() + " puede adoptarse");
+                 }
+            }else{
+                System.out.println("El perro elegido ya fue adoptado");
+            }
+        }
+
+        return puppy;
+    }
+}
