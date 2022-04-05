@@ -1,11 +1,11 @@
 package guia09_extras_ejercicio02;
 
-import Utilidades.OtrasUtilidades;
+import Utilidades.Orchestator;
 
 public class Guia09_Extras_Ejercicio02 {
 
     public static void main(String[] args) {
-        OtrasUtilidades orchestator = new OtrasUtilidades();
+        Orchestator orchestator = new Orchestator();
 
         orchestator.llenarSala();
 

@@ -10,7 +10,7 @@ import Servicios.ServiciosSala;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class OtrasUtilidades {
+public class Orchestator {
 
     Sala sala = new Sala();
     ServiciosSala servRoom = new ServiciosSala();
